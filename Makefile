@@ -16,28 +16,7 @@ build-venv:
 		echo "Generating pyproject.toml file."
 		poetry init -n
 	fi
-	make check-dependencies
 	poetry install --no-root
-
-.PHONY: add-production-packages ## Add production package to pyproject.toml (from pypi.org) using poetry
-add-production-packages:
-	echo "Adding production packages"
-	poetry add pandas
-	poetry add numpy
-
-.PHONY: add-dev-packages ## Add dev package to pyproject.toml(from pypi.org) using poetry
-add-dev-packages:
-	echo "Installing dev packages"
-	poetry add --group dev pytest
-	poetry add --group dev pytest-cov
-	poetry add --group dev pytest-mock
-	poetry add --group dev flake8
-	poetry add --group dev pdoc3
-
-.PHONY: check-dependencies ## Ensure that all dependencies are installed
-check-dependencies:
-	echo "Ensure dependencies are installed"
-	poetry check
 
 .PHONY: run-pytest ## Run pytest using pytest
 run-pytest:
